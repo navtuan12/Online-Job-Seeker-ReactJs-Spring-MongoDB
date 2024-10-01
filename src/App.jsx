@@ -1,5 +1,6 @@
-import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 
+import { useSelector } from "react-redux";
 import { Footer, Navbar } from "./components";
 import {
   About,
@@ -11,18 +12,17 @@ import {
   UploadJob,
   UserProfile,
 } from "./pages";
-import { useSelector } from "react-redux";
 
-function Layout() {
-  const { user } = useSelector((state) => state.user);
-  const location = useLocation();
+// function Layout() {
+//   const { user } = useSelector((state) => state.user);
+//   const location = useLocation();
 
-  return user?.token ? (
-    <Outlet />
-  ) : (
-    <Navigate to='/user-auth' state={{ from: location }} replace />
-  );
-}
+//   return user?.token ? (
+//     <Outlet />
+//   // ) : (
+//   //   <Navigate to='/user-auth' state={{ from: location }} replace />
+//   // );
+// }
 
 function App() {
   const { user } = useSelector((state) => state.user);
@@ -31,7 +31,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<Outlet/>}>
           <Route
             path='/'
             element={<Navigate to='/find-jobs' replace={true} />}
