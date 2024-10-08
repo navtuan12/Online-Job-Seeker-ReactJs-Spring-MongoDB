@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
-import { Linkedin } from "../assets";
 import moment from "moment";
+import { useEffect, useState } from "react";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
-import { useParams } from "react-router-dom";
-import { jobs } from "../utils/data";
-import { CustomButton, JobCard, Loading } from "../components";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { CustomButton, JobCard, Loading } from "../components";
 import { apiRequest } from "../utils";
 
 const noLogo =
@@ -146,21 +144,19 @@ const JobDetail = () => {
               <CustomButton
                 onClick={() => setSelected("0")}
                 title='Job Description'
-                containerStyles={`w-full flex items-center justify-center py-3 px-5 outline-none rounded-full text-sm ${
-                  selected === "0"
+                containerStyles={`w-full flex items-center justify-center py-3 px-5 outline-none rounded-full text-sm ${selected === "0"
                     ? "bg-black text-white"
                     : "bg-white text-black border border-gray-300"
-                }`}
+                  }`}
               />
 
               <CustomButton
                 onClick={() => setSelected("1")}
                 title='Company'
-                containerStyles={`w-full flex items-center justify-center  py-3 px-5 outline-none rounded-full text-sm ${
-                  selected === "1"
+                containerStyles={`w-full flex items-center justify-center  py-3 px-5 outline-none rounded-full text-sm ${selected === "1"
                     ? "bg-black text-white"
                     : "bg-white text-black border border-gray-300"
-                }`}
+                  }`}
               />
             </div>
 
@@ -169,13 +165,13 @@ const JobDetail = () => {
                 <>
                   <p className='text-xl font-semibold'>Job Decsription</p>
 
-                  <span className='text-base'>{job?.detail[0]?.desc}</span>
+                  <span className='text-base'>{job?.detail?.desc}</span>
 
-                  {job?.detail[0]?.requirements && (
+                  {job?.detail?.requirements && (
                     <>
                       <p className='text-xl font-semibold mt-8'>Requirement</p>
                       <span className='text-base'>
-                        {job?.detail[0]?.requirements}
+                        {job?.detail?.requirements}
                       </span>
                     </>
                   )}

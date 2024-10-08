@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { BiBriefcaseAlt2 } from "react-icons/bi";
 import { BsStars } from "react-icons/bs";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import Header from "../components/Header";
-import { experience, jobTypes } from "../utils/data";
 import { CustomButton, JobCard, ListBox, Loading } from "../components";
+import Header from "../components/Header";
 import { apiRequest, updateURL } from "../utils";
+import { experience, jobTypes } from "../utils/data";
 
 const FindJobs = () => {
   const [sort, setSort] = useState("Newest");
@@ -49,7 +49,7 @@ const FindJobs = () => {
 
       setNumPage(res?.numOfPage);
       setRecordCount(res?.totalJobs);
-      setData(res.data);
+      setData(res.result);
 
       setIsFetching(false);
     } catch (error) {
@@ -177,7 +177,7 @@ const FindJobs = () => {
         <div className='w-full md:w-5/6 px-5 md:px-0'>
           <div className='flex items-center justify-between mb-4'>
             <p className='text-sm md:text-base'>
-              Shwoing: <span className='font-semibold'>{recordCount}</span> Jobs
+              Showing: <span className='font-semibold'>{recordCount}</span> Jobs
               Available
             </p>
 

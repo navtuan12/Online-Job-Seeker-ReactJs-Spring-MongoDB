@@ -5,7 +5,7 @@ import { BiChevronDown } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Logout } from "../redux/userSlice";
 import CustomButton from "./CustomButton";
 
@@ -104,11 +104,10 @@ function MenuList({ user, onClick }) {
 const Navbar = () => {
   const { user } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState(false);
-
+  
   const handleCloseNavbar = () => {
     setIsOpen((prev) => !prev);
   };
-
   return (
     <>
       <div className='relative bg-[#f7fdfd] z-50'>
@@ -129,9 +128,9 @@ const Navbar = () => {
             <li>
               <Link
                 to={
-                  user?.accountType === "seeker"
+                  (!user)?"/user-auth":(user?.accountType === "seeker"
                     ? "/applications"
-                    : "/upload-job"
+                    : "/upload-job")
                 }
               >
                 {user?.accountType === "seeker" ? "Applications" : "Upload Job"}

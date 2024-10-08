@@ -1,5 +1,5 @@
-import { GoLocation } from "react-icons/go";
 import moment from "moment";
+import { GoLocation } from "react-icons/go";
 import { Link } from "react-router-dom";
 const noLogo =
   "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/450px-No_image_available.svg.png";
@@ -36,7 +36,7 @@ const JobCard = ({ job }) => {
 
         <div className='py-3'>
           <p className='text-sm'>
-            {job?.detail[0]?.desc?.slice(0, 150) + "..."}
+            {job?.detail?.desc?.slice(0, 150) + "..."}
           </p>
         </div>
 
