@@ -13,16 +13,16 @@ import {
   UserProfile,
 } from "./pages";
 
-// function Layout() {
-//   const { user } = useSelector((state) => state.user);
-//   const location = useLocation();
+function Layout() {
+  const { user } = useSelector((state) => state.user);
+  const location = useLocation();
 
-//   return user?.token ? (
-//     <Outlet />
-//   // ) : (
-//   //   <Navigate to='/user-auth' state={{ from: location }} replace />
-//   // );
-// }
+  return user?.token ? (
+    <Outlet />
+  ) : (
+    <Navigate to='/user-auth' state={{ from: location }} replace />
+  );
+}
 
 function App() {
   const { user } = useSelector((state) => state.user);

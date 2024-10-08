@@ -251,7 +251,7 @@ const UserProfile = () => {
         method: "GET",
       });
       if (res.success) {
-        setUserInfo(res.user); // Update the userInfo state
+        setUserInfo(res.result); // Update the userInfo state
       }
     } catch (error) {
       console.error("Failed to fetch user data", error);

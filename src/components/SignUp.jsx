@@ -53,7 +53,7 @@ const SignUp = ({ open, setOpen }) => {
         method: "POST",
       });
 
-      if (res?.status === "falied") {
+      if (res?.success === false) {
         setErrMsg(res?.message);
       } else {
         setErrMsg("");
@@ -226,7 +226,7 @@ const SignUp = ({ open, setOpen }) => {
                             label='Confirm Password'
                             placeholder='Password'
                             type='password'
-                            register={register("cPassword", {
+                            register={register("cpassword", {
                               validate: (value) => {
                                 const { password } = getValues();
 
@@ -236,9 +236,9 @@ const SignUp = ({ open, setOpen }) => {
                               },
                             })}
                             error={
-                              errors.cPassword &&
-                              errors.cPassword.type === "validate"
-                                ? errors.cPassword?.message
+                              errors.cpassword &&
+                              errors.cpassword.type === "validate"
+                                ? errors.cpassword?.message
                                 : ""
                             }
                           />

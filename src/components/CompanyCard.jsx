@@ -8,7 +8,7 @@ const CompanyCard = ({ cmp }) => {
   return (
     <div className='w-full h-16 flex gap-4 items-center justify-between bg-white shadow-md rounded'>
       <div className='w-3/4 md:w-2/4 flex gap-4 items-center'>
-        <Link to={`/company-profile/${cmp?._id}`}>
+        <Link to={`/company-profile/${cmp?.id}`}>
           <img
             src={cmp?.profileUrl || noLogo}
             alt={cmp?.name}
@@ -17,7 +17,7 @@ const CompanyCard = ({ cmp }) => {
         </Link>
         <div className='h-full flex flex-col'>
           <Link
-            to={`/company-profile/${cmp?._id}`}
+            to={`/company-profile/${cmp?.id}`}
             className='text-base md:text-lg font-semibold text-gray-600 truncate'
           >
             {cmp?.name}
