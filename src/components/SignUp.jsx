@@ -36,11 +36,11 @@ const SignUp = ({ open, setOpen }) => {
     setIsLoading(true);
     if (isRegister) {
       if (accountType === "seeker") {
-        URL = "auth/register";
+        URL = "users/register";
       } else URL = "companies/register";
     } else {
       if (accountType === "seeker") {
-        URL = "auth/login";
+        URL = "users/login";
       } else {
         URL = "companies/login";
       }
@@ -57,7 +57,7 @@ const SignUp = ({ open, setOpen }) => {
         setErrMsg(res?.message);
       } else {
         setErrMsg("");
-        const newData = { token: res?.token, ...res?.user };
+        const newData = { token: res?.token, ...res?.result };
         dispatch(Login(newData));
         localStorage.setItem("userInfo", JSON.stringify(newData));
         window.location.replace(from);

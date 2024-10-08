@@ -72,14 +72,14 @@ const UploadJob = () => {
 
   const getRecentPost = async () => {
     try {
-      const id = user?._id;
+      const id = user?.id;
 
       const res = await apiRequest({
         url: "/companies/get-company/" + id,
         method: "GET",
       });
 
-      setRecentPost(res?.data?.jobPosts);
+      setRecentPost(res?.result?.jobPosts);
     } catch (error) {
       console.log(error);
     }

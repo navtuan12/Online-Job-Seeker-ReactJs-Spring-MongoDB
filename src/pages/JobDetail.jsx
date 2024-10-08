@@ -29,7 +29,7 @@ const JobDetail = () => {
         method: "GET",
       });
 
-      setJob(res?.data);
+      setJob(res?.result);
       setSimilarJobs(res?.similarJobs);
       setIsFetching(false);
     } catch (error) {
@@ -44,7 +44,7 @@ const JobDetail = () => {
     try {
       if (window.confirm("Delete Job Post?")) {
         const res = await apiRequest({
-          url: "/jobs/delete-job/" + job?._id,
+          url: "/jobs/delete-job/" + job?.id,
           token: user?.token,
           method: "DELETE",
         });
@@ -193,7 +193,7 @@ const JobDetail = () => {
             </div>
 
             <div className='w-full'>
-              {user?._id === job?.company?._id ? (
+              {user?.id === job?.company?.id ? (
                 <CustomButton
                   title='Delete Post'
                   onClick={handleDeletePost}

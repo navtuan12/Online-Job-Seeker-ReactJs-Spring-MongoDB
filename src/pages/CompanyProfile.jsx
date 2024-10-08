@@ -6,7 +6,6 @@ import { HiLocationMarker } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
 import { FiPhoneCall, FiEdit3, FiUpload } from "react-icons/fi";
 import { Link, useParams } from "react-router-dom";
-import { companies, jobs } from "../utils/data";
 import { CustomButton, JobCard, Loading, TextInput } from "../components";
 import { apiRequest, handleFileUpload } from "../utils";
 import { Login } from "../redux/userSlice";
@@ -211,7 +210,7 @@ const CompanyProfile = () => {
     if (params.id && params.id !== undefined) {
       id = params?.id;
     } else {
-      id = user?._id;
+      id = user?.id;
     }
 
     try {
@@ -220,7 +219,7 @@ const CompanyProfile = () => {
         method: "GET",
       });
 
-      setInfo(res?.data);
+      setInfo(res?.result);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -245,7 +244,7 @@ const CompanyProfile = () => {
             Welcome, {info?.name}
           </h2>
 
-          {user?.user?.accountType === undefined && info?._id === user?._id && (
+          {user?.user?.accountType === undefined && info?.id === user?.id && (
             <div className='flex items-center justifu-center py-5 md:py-0 gap-4'>
               <CustomButton
                 onClick={() => setOpenForm(true)}

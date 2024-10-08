@@ -42,7 +42,7 @@ const Companies = () => {
 
       setNumPage(res?.numOfPage);
       setRecordsCount(res?.total);
-      setData(res?.data);
+      setData(res?.result);
 
       setIsFetching(false);
     } catch (e) {
