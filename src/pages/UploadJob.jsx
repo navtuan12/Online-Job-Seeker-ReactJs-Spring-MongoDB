@@ -77,6 +77,7 @@ const UploadJob = () => {
       const res = await apiRequest({
         url: "/companies/get-company/" + id,
         method: "GET",
+        token: user?.token
       });
 
       setRecentPost(res?.result?.jobPosts);

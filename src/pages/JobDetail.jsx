@@ -4,6 +4,7 @@ import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { CustomButton, JobCard, Loading } from "../components";
+import UpdateJobForm from '../components/UpdateJobForm';
 import { apiRequest } from "../utils";
 
 const noLogo =
@@ -19,6 +20,8 @@ const JobDetail = () => {
 
   const [selected, setSelected] = useState("0");
   const [isFetching, setIsFetching] = useState(false);
+
+  const [showUpdateForm, setShowUpdateForm] = useState(false);
 
   const getJobDetails = async () => {
     setIsFetching(true);
@@ -60,11 +63,31 @@ const JobDetail = () => {
       console.log(error);
     }
   };
+
+  const handleUpdateJob = async (updatedJobData) => {
+    setIsFetching(true);
+    try {
+      const res = await apiRequest({
+        url: '/jobs/update-job/' + job?.id,
+        token: user?.token,
+        method: 'PUT',
+        data: updatedJobData,
+      });
+      if (res?.success) {
+        getJobDetails(); // Refresh the job details
+        setShowUpdateForm(false); // Hide the form after update
+      }
+    } catch (error) {
+      setIsFetching(false);
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     id && getJobDetails();
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [id]);
-
+  
   return (
     <div className='container mx-auto'>
       <div className='w-full flex flex-col md:flex-row gap-10'>
@@ -194,11 +217,20 @@ const JobDetail = () => {
 
             <div className='w-full'>
               {user?.id === job?.company?.id ? (
-                <CustomButton
-                  title='Delete Post'
-                  onClick={handleDeletePost}
-                  containerStyles={`w-full flex items-center justify-center text-white bg-red-700 py-3 px-5 outline-none rounded-full text-base`}
-                />
+                <>
+                  <>
+                    <CustomButton
+                      title='Edit Post'
+                      onClick={() => setShowUpdateForm(!showUpdateForm)}
+                      containerStyles={`w-full flex items-center justify-center text-white bg-black py-3 px-5 outline-none rounded-full text-base m-2`}
+                    />
+                    <CustomButton
+                      title='Delete Post'
+                      onClick={handleDeletePost}
+                      containerStyles={`w-full flex items-center justify-center text-white bg-red-700 py-3 px-5 outline-none rounded-full text-base m-2`}
+                    />
+                  </>
+                </>
               ) : (
                 <CustomButton
                   title='Apply Now'
@@ -206,6 +238,14 @@ const JobDetail = () => {
                 />
               )}
             </div>
+            {showUpdateForm && (
+              <UpdateJobForm
+                job={job}
+                handleUpdateJob={handleUpdateJob}
+                isOpen={showUpdateForm}
+                setIsOpen={setShowUpdateForm}
+              />
+            )}
           </div>
         )}
 

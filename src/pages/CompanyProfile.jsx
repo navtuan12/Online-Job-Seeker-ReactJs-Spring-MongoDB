@@ -1,14 +1,14 @@
-import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { HiLocationMarker } from "react-icons/hi";
 import { AiOutlineMail } from "react-icons/ai";
-import { FiPhoneCall, FiEdit3, FiUpload } from "react-icons/fi";
+import { FiEdit3, FiPhoneCall, FiUpload } from "react-icons/fi";
+import { HiLocationMarker } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { CustomButton, JobCard, Loading, TextInput } from "../components";
-import { apiRequest, handleFileUpload } from "../utils";
 import { Login } from "../redux/userSlice";
+import { apiRequest, handleFileUpload } from "../utils";
 
 const CompnayForm = ({ open, setOpen }) => {
   const { user } = useSelector((state) => state.user);
@@ -217,6 +217,7 @@ const CompanyProfile = () => {
       const res = await apiRequest({
         url: "/companies/get-company/" + id,
         method: "GET",
+        token: user?.token
       });
 
       setInfo(res?.result);
@@ -241,7 +242,7 @@ const CompanyProfile = () => {
       <div className=''>
         <div className='w-full flex flex-col md:flex-row gap-3 justify-between'>
           <h2 className='text-gray-600 text-xl font-semibold'>
-            Welcome, {info?.name}
+           {info?.name}
           </h2>
 
           {user?.user?.accountType === undefined && info?.id === user?.id && (

@@ -1,4 +1,4 @@
-import { Navigate, Outlet, Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom";
 
 import { useSelector } from "react-redux";
 import { Footer, Navbar } from "./components";
@@ -31,7 +31,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route element={<Outlet/>}>
+        <Route element={<Layout />}>
           <Route
             path='/'
             element={<Navigate to='/find-jobs' replace={true} />}
