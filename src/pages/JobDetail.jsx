@@ -53,7 +53,6 @@ const JobDetail = () => {
         });
 
         if (res?.success) {
-          alert(res?.messsage);
           window.location.replace("/");
         }
       }
